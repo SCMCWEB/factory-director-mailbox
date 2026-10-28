@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>廠長信箱｜匿名意見收集</title>
+  <style>
+    :root { --navy:#12324a; --teal:#087f82; --mist:#edf5f5; --ink:#18303f; --line:#d6e1e4; --danger:#9e3030; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; font-family:"Microsoft JhengHei", "Noto Sans TC", Arial, sans-serif; color:var(--ink); background:linear-gradient(130deg,#edf6f6 0%,#f8fbfb 55%,#e6eff2 100%); }
+    .banner { background:var(--navy); color:#fff; padding:42px 24px 48px; }
+    .banner-inner, main { max-width:760px; margin:auto; }
+    .banner-inner { position:relative; }
+    .eyebrow { margin:0 0 10px; color:#a8e0df; font-size:1rem; letter-spacing:.12em; font-weight:bold; }
+    h1 { margin:0; font-size:clamp(2.3rem,6vw,3.5rem); letter-spacing:.04em; }
+    .subtitle { margin:14px 0 0; color:#d7e7eb; font-size:1.2rem; line-height:1.7; }
+    .lang-switch { position:absolute; top:-6px; right:0; padding:5px 12px; border:1px solid #a8e0df80; border-radius:999px; color:#d7e7eb; font-size:.95rem; text-decoration:none; letter-spacing:.04em; transition:background .2s,color .2s; }
+    .lang-switch:hover, .lang-switch:focus-visible { background:#ffffff1a; color:#fff; outline:0; }
+    main { margin-top:-24px; padding:0 16px 48px; }
+    .card { background:#fff; border-radius:16px; box-shadow:0 12px 32px #1433421a; padding:32px; }
+    .anonymous { display:flex; gap:12px; align-items:flex-start; padding:15px 16px; margin-bottom:28px; border-left:4px solid var(--teal); border-radius:4px; background:var(--mist); font-size:1.12rem; line-height:1.65; }
+    .lock { font-size:1.4rem; }
+    .anonymous strong { display:block; margin-bottom:2px; }
+    .form-frame iframe { display:block; width:100%; height:1150px; border:0; }
+    .form-placeholder { padding:40px 20px; border:2px dashed var(--line); border-radius:8px; color:#60717b; background:#fafcfc; text-align:center; line-height:1.7; }
+    .open-new { margin:14px 0 0; color:#60717b; font-size:1rem; text-align:center; }
+    .open-new a { color:var(--teal); }
+    footer { text-align:center; margin-top:18px; color:#697b84; font-size:.95rem; }
+    @media (max-width:520px) { .banner { padding:32px 20px 44px; } .card { padding:22px 18px; } .form-frame iframe { height:1350px; } }
+  </style>
+</head>
+<body>
+  <header class="banner"><div class="banner-inner">
+    <a class="lang-switch" id="langSwitch" href="?lang=en" hreflang="en">English</a>
+    <p class="eyebrow">ANONYMOUS FEEDBACK</p><h1 id="heading">廠長信箱</h1>
+    <p class="subtitle" id="subtitle">提供一個安心、直接的意見反映管道。您的姓名、部門與聯絡方式均不會在此表單蒐集。</p>
+  </div></header>
+  <main><section class="card" id="card" aria-label="匿名意見表單">
+    <div class="anonymous"><span class="lock">🔒</span><div><strong id="noticeTitle">本表單採不記名方式</strong><span id="noticeBody">請勿在內容中填寫可辨識自己或他人的個人資料；系統僅傳送您選擇的議題與意見內容。</span></div></div>
+    <div class="form-frame" id="formFrame"></div>
+    <p class="open-new" id="openNew" hidden><a id="openNewLink" target="_blank" rel="noopener"></a></p>
+  </section><footer id="footer">廠長信箱 · 您的意見將作為持續改善的參考</footer></main>
+  <script>
+    // 上線前請設定：在 Microsoft Forms 按「收集回應」→「內嵌」(</>)，把內嵌碼裡 src="..." 的網址貼進來。
+    // 只做一份多語言表單時，en 留空即可（會沿用 zh 的網址）。
+    const CONFIG = { formUrl: { zh: "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=fp8wXu7DO0SGaJdwHZmLLPcHfBs6KgFMv73zoyf2Nr1UQzlWTjhWU1lHN1dEVDk2UjhMUVNYRzBIMi4u", en: "" } };
+
+    const TEXT = {
+      zh: {
+        htmlLang: 'zh-Hant', formsLang: 'zh-TW', title: '廠長信箱｜匿名意見收集', heading: '廠長信箱',
+        subtitle: '提供一個安心、直接的意見反映管道。您的姓名、部門與聯絡方式均不會在此表單蒐集。',
+        noticeTitle: '本表單採不記名方式', noticeBody: '請勿在內容中填寫可辨識自己或他人的個人資料；系統僅傳送您選擇的議題與意見內容。',
+        cardLabel: '匿名意見表單', iframeTitle: '廠長信箱匿名意見表單',
+        footer: '廠長信箱 · 您的意見將作為持續改善的參考',
+        switchText: 'English', switchLang: 'en',
+        openNew: '表單沒有顯示？請點這裡在新視窗開啟',
+        placeholder: '表單尚未設定。請管理者在本頁 CONFIG.formUrl 填入 Microsoft Forms 的內嵌網址。'
+      },
+      en: {
+        htmlLang: 'en', formsLang: 'en-US', title: "Factory Director's Mailbox | Anonymous Feedback", heading: "Factory Director's Mailbox",
+        subtitle: 'A safe and direct channel for sharing your feedback. This form does not collect your name, department, or contact information.',
+        noticeTitle: 'This form is anonymous', noticeBody: 'Please do not include any information that could identify you or others. Only the topic you select and your feedback are submitted.',
+        cardLabel: 'Anonymous feedback form', iframeTitle: "Factory Director's Mailbox anonymous feedback form",
+        footer: "Factory Director's Mailbox · Your feedback helps us keep improving",
+        switchText: '中文', switchLang: 'zh',
+        openNew: 'Form not showing? Click here to open it in a new window',
+        placeholder: 'The form has not been set up yet. Administrator: enter the Microsoft Forms embed URL in CONFIG.formUrl on this page.'
+      }
+    };
+
+    const requested = new URLSearchParams(location.search).get('lang');
+    const lang = TEXT[requested] ? requested : ((navigator.language || '').toLowerCase().startsWith('zh') ? 'zh' : 'en');
+    const t = TEXT[lang];
+
+    document.documentElement.lang = t.htmlLang;
+    document.title = t.title;
+    for (const id of ['heading', 'subtitle', 'noticeTitle', 'noticeBody', 'footer']) document.getElementById(id).textContent = t[id];
+    document.getElementById('card').setAttribute('aria-label', t.cardLabel);
+    const langSwitch = document.getElementById('langSwitch');
+    langSwitch.textContent = t.switchText;
+    langSwitch.href = `?lang=${t.switchLang}`;
+    langSwitch.hreflang = t.switchLang === 'zh' ? 'zh-Hant' : 'en';
+
+    function formUrls(raw) {
+      try {
+        const url = new URL(raw);
+        if (url.protocol !== 'https:') return null;
+        url.searchParams.set('embed', 'true');
+        url.searchParams.set('lang', t.formsLang); // 多語言表單依外框語言顯示
+        const plain = new URL(url); plain.searchParams.delete('embed');
+        return { embed: url.toString(), plain: plain.toString() };
+      } catch { return null; }
+    }
+
+    const frame = document.getElementById('formFrame');
+    const urls = formUrls(CONFIG.formUrl[lang] || CONFIG.formUrl.zh || CONFIG.formUrl.en);
+    if (urls) {
+      const iframe = document.createElement('iframe');
+      iframe.src = urls.embed;
+      iframe.title = t.iframeTitle;
+      iframe.loading = 'lazy';
+      iframe.allowFullscreen = true;
+      frame.appendChild(iframe);
+      const link = document.getElementById('openNewLink');
+      link.href = urls.plain;
+      link.textContent = t.openNew;
+      document.getElementById('openNew').hidden = false;
+    } else {
+      const box = document.createElement('div');
+      box.className = 'form-placeholder';
+      box.textContent = t.placeholder;
+      frame.appendChild(box);
+    }
+  </script>
+</body>
+</html>
