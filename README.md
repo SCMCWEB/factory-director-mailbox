@@ -1,4 +1,4 @@
-# 廠長信箱（Factory Director's Mailbox）
+# 廠長我有話要說......（Factory Director's Mailbox）
 
 匿名意見收集網頁。外框（橫幅、匿名說明、頁尾）是 `index.html`，中間嵌入 Microsoft Forms；
 留言只存在公司 Microsoft 365 的 Forms 裡，本 repo 不存任何留言。

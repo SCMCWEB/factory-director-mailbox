@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>廠長信箱｜匿名意見收集</title>
+  <title>廠長我有話要說......｜匿名意見收集</title>
   <style>
     :root { --navy:#12324a; --teal:#087f82; --mist:#edf5f5; --ink:#18303f; --line:#d6e1e4; --danger:#9e3030; }
     * { box-sizing:border-box; }
@@ -28,20 +28,20 @@
     .open-new { margin:14px 0 0; color:#60717b; font-size:1rem; text-align:center; }
     .open-new a { color:var(--teal); }
     footer { text-align:center; margin-top:18px; color:#697b84; font-size:.95rem; }
-    @media (max-width:520px) { .banner { padding:32px 20px 44px; } .card { padding:22px 18px; } .form-frame iframe { height:1690px; } html[lang="en"] .form-frame iframe { height:1880px; } }
+    @media (max-width:520px) { .banner { padding:32px 20px 44px; } h1 { font-size:clamp(1.7rem,8.2vw,2.3rem); } .card { padding:22px 18px; } .form-frame iframe { height:1690px; } html[lang="en"] .form-frame iframe { height:1880px; } }
   </style>
 </head>
 <body>
   <header class="banner"><div class="banner-inner">
     <a class="lang-switch" id="langSwitch" href="?lang=en" hreflang="en">English</a>
-    <p class="eyebrow">ANONYMOUS FEEDBACK</p><h1 id="heading">廠長信箱</h1>
+    <p class="eyebrow">ANONYMOUS FEEDBACK</p><h1 id="heading">廠長我有話要說......</h1>
     <p class="subtitle" id="subtitle">提供一個安心、直接的意見反映管道。您的姓名、部門與聯絡方式均不會在此表單蒐集。</p>
   </div></header>
   <main><section class="card" id="card" aria-label="匿名意見表單">
     <div class="anonymous"><span class="lock">🔒</span><div><strong id="noticeTitle">本表單採不記名方式</strong><span id="noticeBody">請勿在內容中填寫可辨識自己或他人的個人資料；系統僅傳送您選擇的議題與意見內容。</span></div></div>
     <div class="form-frame" id="formFrame"></div>
     <p class="open-new" id="openNew" hidden><a id="openNewLink" target="_blank" rel="noopener"></a></p>
-  </section><footer id="footer">廠長信箱 · 您的意見將作為持續改善的參考</footer></main>
+  </section><footer id="footer">廠長我有話要說...... · 您的意見將作為持續改善的參考</footer></main>
   <script>
     // 上線前請設定：在 Microsoft Forms 按「收集回應」→「內嵌」(</>)，把內嵌碼裡 src="..." 的網址貼進來。
     // 只做一份多語言表單時，en 留空即可（會沿用 zh 的網址）。
@@ -49,11 +49,11 @@
 
     const TEXT = {
       zh: {
-        htmlLang: 'zh-Hant', formsLang: 'zh-TW', title: '廠長信箱｜匿名意見收集', heading: '廠長信箱',
+        htmlLang: 'zh-Hant', formsLang: 'zh-TW', title: '廠長我有話要說......｜匿名意見收集', heading: '廠長我有話要說......',
         subtitle: '提供一個安心、直接的意見反映管道。您的姓名、部門與聯絡方式均不會在此表單蒐集。',
         noticeTitle: '本表單採不記名方式', noticeBody: '請勿在內容中填寫可辨識自己或他人的個人資料；系統僅傳送您選擇的議題與意見內容。',
-        cardLabel: '匿名意見表單', iframeTitle: '廠長信箱匿名意見表單',
-        footer: '廠長信箱 · 您的意見將作為持續改善的參考',
+        cardLabel: '匿名意見表單', iframeTitle: '廠長我有話要說......匿名意見表單',
+        footer: '廠長我有話要說...... · 您的意見將作為持續改善的參考',
         switchText: 'English', switchLang: 'en',
         openNew: '表單沒有顯示？請點這裡在新視窗開啟',
         placeholder: '表單尚未設定。請管理者在本頁 CONFIG.formUrl 填入 Microsoft Forms 的內嵌網址。'
